@@ -1,7 +1,7 @@
 # vismod
 
-可直接用来查看urdf、sdf等模型，不需要通过ROS，也不需要额外的软件。
-下载地址：
+* 可直接用来查看urdf、sdf等模型，不需要通过ROS，也不需要额外的软件。
+* 下载地址：https://github.com/borninfreedom/vismod/releases/tag/publish
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/1c4e6256f55e4ef2abf4111f1dda3490.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYm9ybi1pbi1mcmVlZG9t,size_11,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/fd1d5abd92f843658f423a4a27c69d85.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYm9ybi1pbi1mcmVlZG9t,size_12,color_FFFFFF,t_70,g_se,x_16)
