@@ -3,4 +3,4 @@ dist
 .idea
 _pycache_
 *.spec
-
+..gitignore.un~ 

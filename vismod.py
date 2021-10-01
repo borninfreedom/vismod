@@ -3,6 +3,15 @@ from tkinter import filedialog as fd
 from tkinter.messagebox import showinfo
 import pybullet as p
 import pybullet_data
+import os
+import logging
+
+LOGGING_LEVEL = logging.DEBUG
+
+logger = logging.getLogger(__name__)
+logger.setLevel(LOGGING_LEVEL)
+console_handler = logging.StreamHandler()
+console_handler.setLevel(LOGGING_LEVEL)
 
 
 class Vismod(tk.Tk):
@@ -33,15 +42,33 @@ class Vismod(tk.Tk):
 
         operation_msg = tk.Label(self, text="按住Ctrl键，配合鼠标进行旋转平移", anchor='center').pack(fill='both', side=tk.BOTTOM)
 
+        self.filetypes = (('All files', '*'), ('urdf files', '*.urdf'), ('sdf files', '*.sdf'))
+        self.extension_types = []
+
+        for i in range(1, len(self.filetypes)):
+            self.extension_types.append(self.filetypes[i][1][1:])
+        logger.debug(f'self.extension_types={self.extension_types}')
+
     def select_file(self):
-        filetypes = (('urdf files', '*.urdf'), ('sdf files', '*.sdf'))
-        self.filename = fd.askopenfilename(title='Open a file', filetypes=filetypes)
-        self.file_name.set(self.filename)
+        try:
+            self.filename = fd.askopenfilename(title='Open a file', filetypes=self.filetypes)
+        except:
+            tk.messagebox.showerror(title='错误', message='打开文件失败')
+
+        if os.path.splitext(self.filename)[-1] not in self.extension_types:
+            tk.messagebox.showerror(title='类型错误', message='不能打开此类文件，请重新选择')
+            self.filename = None
+            self.file_name.set('')
+        else:
+            self.file_name.set(self.filename)
         # showinfo(title='Selected File',message=filename)
         # print(filename)
 
     def view_model(self, filename):
-        Pybullet(filename)
+        if filename:
+            Pybullet(filename)
+        else:
+            tk.messagebox.showerror(title='文件错误', message='请先选择文件')
 
 
 class Pybullet:
@@ -50,7 +77,15 @@ class Pybullet:
         urdf_root_path = pybullet_data.getDataPath()
         # p.loadURDF(os.path.join(urdf_root_path,"plane.urdf"))
         try:
-            p.loadURDF(filename)
+            if os.path.splitext(filename)[-1] == ".urdf":
+                p.loadURDF(filename)
+            elif os.path.splitext(filename)[-1] == ".sdf":
+                p.loadSDF(filename)
+            elif os.path.splitext(filename)[-1] == ".mjcf":
+                p.loadMJCF(filename)
+            else:
+                tk.messagebox.showerror(title='类型错误', message='不能打开此类文件')
+
             # tk.messagebox.showinfo(title="操作方法",message="按住Ctrl键，配合鼠标键进行拖动旋转平移等操作。")
         except:
             tk.messagebox.showerror(title="导入模型失败",
