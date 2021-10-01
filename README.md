@@ -2,7 +2,7 @@
 
 * 可直接用来查看urdf、sdf等模型，不需要通过ROS，也不需要额外的软件。
 
-* 下载地址：https://github.com/borninfreedom/vismod/releases/tag/publish
+* **下载地址**：https://github.com/borninfreedom/vismod/releases/tag/publish
 
 * 如果想自己重新打包发布，目前使用的打包命令是，可以作为参考
 
