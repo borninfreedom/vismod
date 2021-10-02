@@ -6,7 +6,9 @@ import tkinter as tk
 
 class Pybullet:
     def __init__(self, filename):
-        p.connect(p.GUI)
+        cid = p.connect(p.SHARED_MEMORY)
+        if cid < 0:
+            p.connect(p.GUI)
         try:
             if os.path.splitext(filename)[-1] == ".urdf":
                 self.robot_id = p.loadURDF(filename)
@@ -20,7 +22,10 @@ class Pybullet:
         except:
             tk.messagebox.showerror(title="导入模型失败",
                                     message="导入模型失败，请检查模型是否依赖了其他文件 (如urdf中import了其他stl文件)，urdf文件及其依赖文件应该放在同一个文件夹中。")
-            p.disconnect()
+            try:
+                p.disconnect()
+            except:
+                pass
 
         p.resetDebugVisualizerCamera(cameraDistance=1.5,
                                      cameraYaw=0,
@@ -32,7 +37,10 @@ class Pybullet:
             while True:
                 p.stepSimulation()
         except:
-            pass
+            try:
+                p.disconnect()
+            except:
+                pass
 
     def add_slidebar(self):
         slide_bars = SlideBars(self.robot_id)
@@ -44,7 +52,10 @@ class Pybullet:
                 p.setJointMotorControlArray(self.robot_id, motor_indices, p.POSITION_CONTROL,
                                             targetPositions=slide_values)
         except:
-            pass
+            try:
+                p.disconnect()
+            except:
+                pass
 
 
 class SlideBars():

@@ -1,10 +1,9 @@
 import tkinter as tk
 import logx
 import tkinter.filedialog as fd
-import PyBullet
+import pybulletx
 import os
 from config import WINDOW_HEIGHT, WINDOW_WIDTH
-import history
 
 logger = logx.setup_logger('add_slidebar')
 
@@ -15,10 +14,9 @@ class AddSlideBar(tk.Frame):
 
         self.file_name = tk.StringVar()
 
-        logger.debug(f'history={history.history}')
-        if history.history:
-            self.filename = history.history[-1]
-            self.file_name.set(self.filename)
+        # if history.history:
+        #     self.filename = history.history[-1]
+        #     self.file_name.set(self.filename)
 
         self.label = tk.Label(self, text="文件路径:", padx=5, pady=5)
         self.label.pack(pady=10)
@@ -59,6 +57,6 @@ class AddSlideBar(tk.Frame):
 
     def add_slidebar(self, filename):
         if filename:
-            PyBullet.Pybullet(filename).add_slidebar()
+            pybulletx.Pybullet(filename).add_slidebar()
         else:
             tk.messagebox.showerror(title='文件错误', message='请先选择文件')

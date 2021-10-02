@@ -25,6 +25,7 @@ class Vismod(tk.Frame):
 
 if __name__ == "__main__":
     root = tk.Tk()
+    root.title('vismod')
     root.geometry(WINDOW_SIZE)
     Vismod(root).pack(fill="both", expand=True)
     root.mainloop()

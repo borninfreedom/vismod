@@ -1,7 +1,7 @@
 import logging
 from typing import Any
 
-LOGGING_LEVEL = logging.DEBUG
+LOGGING_LEVEL = logging.INFO
 
 
 def setup_logger(logger_name: str) -> Any:

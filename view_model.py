@@ -1,10 +1,9 @@
 import tkinter as tk
 import logx
 import tkinter.filedialog as fd
-import PyBullet
+import pybulletx
 import os
 from config import WINDOW_HEIGHT, WINDOW_WIDTH
-import history
 
 logger = logx.setup_logger('view_model')
 
@@ -14,11 +13,11 @@ class ViewModel(tk.Frame):
         super().__init__(parent, *args, **kwargs)
 
         self.file_name = tk.StringVar()
-
-        logger.debug(f'history={history.history}')
-        if history.history:
-            self.filename = history.history[-1]
-            self.file_name.set(self.filename)
+        #
+        # logger.debug(f'history={history.history}')
+        # if history.history:
+        #     self.filename = history.history[-1]
+        #     self.file_name.set(self.filename)
 
         self.label = tk.Label(self, text="文件路径:", padx=5, pady=5)
         self.label.pack(pady=10)
@@ -53,13 +52,13 @@ class ViewModel(tk.Frame):
             self.file_name.set('')
         else:
             self.file_name.set(self.filename)
-            history.add_history(self.filename)
-            logger.debug(f'history={history.history}')
+            # history.add_history(self.filename)
+            # logger.debug(f'history={history.history}')
         # showinfo(title='Selected File',message=filename)
         # print(filename)
 
     def view_model(self, filename):
         if filename:
-            PyBullet.Pybullet(filename).view_model()
+            pybulletx.Pybullet(filename).view_model()
         else:
             tk.messagebox.showerror(title='文件错误', message='请先选择文件')
