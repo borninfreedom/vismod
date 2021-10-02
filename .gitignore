@@ -4,3 +4,4 @@ dist
 _pycache_
 *.spec
 ..gitignore.un~ 
+tests
