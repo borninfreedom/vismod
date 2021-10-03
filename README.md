@@ -5,7 +5,8 @@
 
 * **下载地址1**：https://github.com/borninfreedom/vismod/releases/tag/publish
 
-* **下载地址2**：https://pan.baidu.com/s/1HCtCN8B2Km4be_maKV6ekQ，提取码：5sm8
+* **下载地址2**：https://pan.baidu.com/s/1HCtCN8B2Km4be_maKV6ekQ
+提取码：5sm8
 
 * 如果想自己重新打包发布，目前使用的打包命令是，可以作为参考
 
