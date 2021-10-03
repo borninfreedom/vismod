@@ -3,7 +3,9 @@
 * 可直接用来查看urdf、sdf等模型，并且在查看的同时，如果有关节电机的模型，还会添加上关节电机的控制滑条，实现拖动控制。
 * 本软件不需要通过ROS，也不需要安装额外的软件，整个软件只有25M左右。
 
-* **下载地址**：https://github.com/borninfreedom/vismod/releases/tag/publish
+* **下载地址1**：https://github.com/borninfreedom/vismod/releases/tag/publish
+
+* **下载地址2**：https://pan.baidu.com/s/1HCtCN8B2Km4be_maKV6ekQ，提取码：5sm8
 
 * 如果想自己重新打包发布，目前使用的打包命令是，可以作为参考
 
@@ -11,7 +13,7 @@
   pyinstaller -F --hidden-import=tkinter --hidden-import=tkinter.filedialog  --hidden-import=numpy --hidden-import=pybullet --noconsole --onefile vismod.py
     ```
 
-    
+
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5d60a8d53728489f8a643a742a0f36ba.png)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/7ac35c7afa214e3a8881849171dd7e29.png)

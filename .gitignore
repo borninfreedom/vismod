@@ -5,3 +5,4 @@ _pycache_
 *.spec
 ..gitignore.un~ 
 tests
+README_bak.md
