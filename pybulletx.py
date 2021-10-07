@@ -11,9 +11,9 @@ class Pybullet:
             p.connect(p.GUI)
         try:
             if os.path.splitext(filename)[-1] == ".urdf":
-                self.robot_id = p.loadURDF(filename)
+                self.robot_id = p.loadURDF(filename, useFixedBase=True)
             elif os.path.splitext(filename)[-1] == ".sdf":
-                self.robot_id = p.loadSDF(filename)[0]
+                self.robot_id = p.loadSDF(filename, )[0]
             elif os.path.splitext(filename)[-1] == ".mjcf":
                 self.robot_id = p.loadMJCF(filename)
             else:
@@ -27,10 +27,11 @@ class Pybullet:
             except:
                 pass
 
+        p.resetBasePositionAndOrientation(self.robot_id, posObj=[0, 0, 0], ornObj=p.getQuaternionFromEuler([0, 0, 0]))
         p.resetDebugVisualizerCamera(cameraDistance=1.5,
                                      cameraYaw=0,
-                                     cameraPitch=-40,
-                                     cameraTargetPosition=[0, -0.35, 0.2])
+                                     cameraPitch=-20,
+                                     cameraTargetPosition=[0, -0.4, 0.8])
 
     def view_model(self):
         try:
